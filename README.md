@@ -24,12 +24,17 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
 
 # Wireframes
 ### Collecting part
+#### Log-in page
 ![Login page](./wireframes/login.JPG)
+#### Sign-up page
 ![SignUp page](./wireframes/signup.JPG)
+#### Profile page
 ![Profile page](./wireframes/profile.JPG)
+#### Cards page
 ![Cards page](./wireframes/cards.JPG)
 ![Cards/:id page](./wireframes/card-indiv.JPG)
 ![Cards/new page](./wireframes/card-new.JPG)
+#### Decks page
 ![Decks page](./wireframes/decks.JPG)
 ![Decks/:id page](./wireframes/deck-indiv.JPG)
 ![Decks/new page](./wireframes/deck-new.JPG)
