@@ -15,7 +15,7 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
 | POST | `/SignUp` | Sign up page and receiving of randomized cards |
 | GET | `/profile` | displays the User profile, i.e. user's collection |
 | GET | `/cards` | displays the User's collection of cards |
-| GET | `/cards/new` | acquire a new randomized card every 2 hours |
+| GET | `/cards/new` | generates one new card each time a button is hit |
 | GET | `/cards/:id` | displays the basic information of the card, i.e. name, type, attack,... |
 | GET | `/decks` | displays the User's Decks, which consist of 10 cards per deck|
 | POST | `/decks/new` | creates a new deck, then redirects back to `GET /decks`|
@@ -50,11 +50,14 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
 # MVP Goals
 - Be able to fetch and store basic card data from the api
 - Be able to display the collection of cards
-- Be able to generate a randomized card for the user to obtain every 2hrs or 2mins, for testing purposes.
+- Be able to generate a randomized card for the user whenever 'generate' button is hit.
+- Be able to 'skip' a generated card, by pressing the skip button, if the user doesn't want the current card. 
 - Be able to display the list of decks, and the cards inside that deck
 - Be able to add and/or remove cards from a specific deck
 
 # Stretch Goals
+### Collecting part
+- Be able to make the user wait for 2hrs to have the ability to generate a new card
 ### Trading part
 - Be able to post a specific card for trading
 - Be able to comment on different posts with a specific card that the user want to trade with
