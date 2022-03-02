@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.hasMany(models.card, { onDelete: 'cascade' }) //clean up records when deleting
+      models.user.hasMany(models.card)
     }
   }
   user.init({
