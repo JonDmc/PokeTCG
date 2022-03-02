@@ -5,7 +5,11 @@ const db = require('../models')
 
 router.get('/', async (req, res) => {
     try {
-        const viewDeck = await db.deck.findAll()
+        const viewDeck = await db.deck.findAll({
+            where: {
+                userId: res.locals.user.id
+            }
+        })
         res.render('decks/show', { deck: viewDeck })
 
     } catch (error) {

@@ -5,16 +5,12 @@ const db = require('../models')
 
 
 router.get('/', async (req, res) => {
-    // const url = `https://api.pokemontcg.io/v2/cards`
-    // axios.get(url)
-    //     .then(response => {
-    //         const searchResults = response.data.data
-    //         // res.send(searchResults)
-    //         // console.log(searchResults)
-    //         res.render('cards/show', { results: searchResults })
-    //     })
     try {
-        const viewCards = await db.card.findAll()
+        const viewCards = await db.card.findAll({
+            where: {
+                userId: res.locals.user.id
+            }
+        })
         res.render('cards/show', { cards: viewCards })
     } catch (error) {
         console.log(error)
@@ -22,10 +18,15 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/new', async (req, res) => {
-    const result = await axios.get(`https://api.pokemontcg.io/v2/cards`)
-    const searchResults = result.data.data
-    let rand = Math.floor(Math.random() * searchResults.length)
-    res.render('cards/new', { card: searchResults[rand] })
+    if (req.cookies.userId) {
+        const result = await axios.get(`https://api.pokemontcg.io/v2/cards`)
+        const searchResults = result.data.data
+        let rand = Math.floor(Math.random() * searchResults.length)
+        res.render('cards/new', { card: searchResults[rand], user: res.locals.user })
+
+    } else {
+        res.redirect('user/login')
+    }
 })
 
 
@@ -64,7 +65,8 @@ router.post('/new', async (req, res) => {
             attack: attacks[0],
             weakness: weakness,
             resistance: resistance,
-            rarity: searchResults.rarity
+            rarity: searchResults.rarity,
+            userId: req.body.userId
         })
 
     } catch (err) {

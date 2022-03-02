@@ -1,11 +1,12 @@
-<a href="cards/">Cards</a>
+<a href="cards/cards">Cards</a>
 <div>
-    <div style="height: 347px; width: 248px; border: .2rem dashed black;">
+    <div style=" height: 347px; width: 248px; border: .2rem dashed black;">
         <img src="<%= card.images.small %> " alt="">
     </div>
     <form action="/cards/new" method="post">
         <input type="submit" value="Claim">
         <input type="hidden" value="<%= card.id %>" name="currentCard">
+        <input type="hidden" value="<%= user.id %>" name="userId">
     </form>
     <form action="/cards/new" method="get">
         <input type="submit" value="Skip">
