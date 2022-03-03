@@ -1,0 +1,17 @@
+<a href="/decks">Decks</a>
+<hr>
+
+<% cardsOnDeck.cards.forEach(element=> { %>
+    <img src="<%= element.image %> " />
+    <% }) %>
+
+        <div>
+            <form action="./<%= deckId%>/add" method="get">
+                <input type="submit" value="Add Card">
+            </form>
+
+            <form action="decks/<%= deckId %>/?_method=DELETE" method="delete">
+                <input type="submit" value="Remove Card">
+            </form>
+
+        </div>

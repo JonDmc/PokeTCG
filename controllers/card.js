@@ -46,10 +46,13 @@ router.post('/new', async (req, res) => {
         attacks.push(element.name)//storing the names in attacks array
         // console.log(attacks)
     }
-    searchResults.weaknesses.forEach(element => {//getting the type inside an array of obj
-        weakness = element.type
-        // console.log(element.type)
-    })
+    if (searchResults.weaknesses) {
+        searchResults.weaknesses.forEach(element => {//getting the type inside an array of obj
+            weakness = element.type
+            // console.log(element.type)
+        })
+    } else weakness = 'N/A'
+
 
     if (searchResults.resistances) {
         searchResults.resistances.forEach(element => {

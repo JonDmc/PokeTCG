@@ -1,0 +1,12 @@
+<a href="decks/new">New</a>
+<hr>
+<div>
+    <% decks.forEach(element=> { %>
+        <div>
+            <a href="decks/<%= element.id %> ">
+                <%= element.name %>
+            </a>
+        </div>
+        <% }) %>
+
+</div>
