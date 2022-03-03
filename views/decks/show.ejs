@@ -15,12 +15,13 @@
     </div>
     </div>
 </nav>
-<h2><a href="decks/new">New</a></h2>
+<h3><a href="/decks/new">New</a></h3>
 <hr>
+<h2>My Decks</h2>
 <div>
     <% decks.forEach(element=> { %>
         <div>
-            <a href="decks/<%= element.id %> ">
+            <a href="/decks/<%= element.id %> ">
                 <%= element.name %>
             </a>
         </div>
