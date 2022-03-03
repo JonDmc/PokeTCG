@@ -30,6 +30,7 @@ app.use(async (req, res, next) => {
 // //Controllers
 app.use('/users', require('./controllers/users.js'))
 app.use('/cards', require('./controllers/card.js'))
+app.use('/decks', require('./controllers/deck.js'))
 
 app.get('/', (req, res) => {
     res.render('index.ejs')
