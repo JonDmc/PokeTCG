@@ -47,11 +47,6 @@ router.get('/:id', async (req, res) => {
             },
             include: [db.card]
         })
-
-        // const allCardsOnDeck = await cardsOnDeck.getCards()
-        console.log('CARDS ' + cardsOnDeck)
-        // console.log('CARDS ' + allCardsOnDeck)
-        // res.render('decks/view', { allCardsOnDeck, deckId: req.params.id })
         res.render('decks/view', { cardsOnDeck, deckId: req.params.id })
     } catch (error) {
         console.log(error)
@@ -74,43 +69,63 @@ router.get('/:id/add', async (req, res) => {
     const userCard = await currentUser.getCards()
 
     res.render('decks/add', { cards: userCard, deckId: req.params.id })
-
-    // try {
-    //     const viewCards = await db.card.findAll({
-    //         where: {
-    //             userId: res.locals.user.id
-    //         }
-    //     })
-    //     // console.log(viewCards)
-    //     res.render('decks/add', { cards: viewCards, decks: req.params.id })
-    // } catch (error) {
-    //     console.log(error)
-    // }
 })
 
 //adding the specific card inside the specific deck
-// router.put('/:id/?_method=PUT', async (req, res) => {
-router.post('/:id', async (req, res) => {
-    console.log("HELLLLOXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+router.post('/:id/add', async (req, res) => {
     try {
 
         const currentDeck = await db.deck.findOne({
             where: {
                 id: req.params.id
-            }
+            },
+            include: [db.user]
         })
         const currentCard = await db.card.findOne({
             where: {
                 id: req.body.cardId
             }
         })
-        // await currentCard.addDeck(currentDeck)
-        // const a = await currentDeck.getUser(currentCard.userId)
         await currentDeck.addCard(currentCard)
-        // console.log("LLLLLL" + a)
-        // await currentDeck.addCard(currentCard)
         res.redirect(`/decks/${req.params.id}`)
         // res.send(currentCard)
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+
+//displays the available cards that can be remove on the specific deck
+router.get('/:id/remove', async (req, res) => {
+    try {
+        const cardsOnDeck = await db.deck.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [db.card]
+        })
+        res.render('decks/remove', { cardsOnDeck, deckId: req.params.id })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.post('/:id/remove', async (req, res) => {
+    try {
+
+        const currentDeck = await db.deck.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [db.user]
+        })
+        const currentCard = await db.card.findOne({
+            where: {
+                id: req.body.cardId
+            }
+        })
+        await currentDeck.removeCard(currentCard)
+        res.redirect(`/decks/${req.params.id}`)
     } catch (error) {
         console.log(error)
     }

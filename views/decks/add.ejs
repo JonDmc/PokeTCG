@@ -20,7 +20,7 @@
 <hr>
 <% cards.forEach(element=> { %>
     <!-- <form action="/decks/<%= deckId%>/?_method=PUT " method="put" style="display: inline; position: relative;"> -->
-    <form action="/decks/<%= deckId%>" method="post" style="display: inline; position: relative;">
+    <form action="/decks/<%= deckId%>/add" method="post" style="display: inline; position: relative;">
         <button><img src="<%= element.image %>" /></button>
         <input hidden value="<%=element.id%>" name="cardId">
     </form>

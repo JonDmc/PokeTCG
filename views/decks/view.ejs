@@ -16,22 +16,39 @@
     </div>
 </nav>
 <!-- page that will show the available cards that can be added to the deck -->
-<hr>
 
 <h2>
     <%= cardsOnDeck.name %>
 </h2>
-<% cardsOnDeck.cards.forEach(element=> { %>
-    <img src="<%= element.image %> " />
-    <% }) %>
+<hr>
+<% if (cardsOnDeck.cards.length> 0) { %>
+    <% cardsOnDeck.cards.forEach(element=> { %>
+        <img src="<%= element.image %> " />
+        <% }) %>
+            <div>
+                <form action="/decks/<%= cardsOnDeck.id%>/add" method="get">
+                    <input type="submit" value="Add Card">
+                </form>
 
-        <div>
-            <form action="/decks/<%= cardsOnDeck.id%>/add" method="get">
-                <input type="submit" value="Add Card">
-            </form>
+                <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get">
+                    <input type="submit" value="Remove Card">
+                </form>
 
-            <form action="/decks/<%= cardsOnDeck.id %>/?_method=DELETE" method="delete">
-                <input type="submit" value="Remove Card">
-            </form>
+            </div>
 
-        </div>
+            <% } else { %>
+                <em>
+                    <h5>Deck is empty</h5>
+
+                    <div>
+                        <form action="/decks/<%= cardsOnDeck.id%>/add" method="get">
+                            <input type="submit" value="Add Card">
+                        </form>
+
+                        <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get">
+                            <input type="submit" value="Remove Card">
+                        </form>
+
+                    </div>
+                </em>
+                <%} %>
