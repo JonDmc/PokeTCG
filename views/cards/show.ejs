@@ -18,9 +18,9 @@
 
 <h2><a href="cards/new">New</a></h2>
 <hr>
-<div style="display: inline-block;">
+<div>
     <% cards.forEach(element=> { %>
-        <div>
+        <div style="display: inline; position: relative;">
             <a href="cards/<%= element.id %> ">
                 <img src="<%= element.image%> " />
             </a>

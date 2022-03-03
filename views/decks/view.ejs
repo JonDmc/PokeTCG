@@ -15,6 +15,7 @@
     </div>
     </div>
 </nav>
+<!-- page that will show the available cards that can be added to the deck -->
 <hr>
 <h2>
     <%= cardsOnDeck.name %>
@@ -24,11 +25,11 @@
     <% }) %>
 
         <div>
-            <form action="./<%= deckId%>/add" method="get">
+            <form action="./<%= cardsOnDeck.id%>/add" method="get">
                 <input type="submit" value="Add Card">
             </form>
 
-            <form action="decks/<%= deckId %>/?_method=DELETE" method="delete">
+            <form action="decks/<%= cardsOnDeck.id %>/?_method=DELETE" method="delete">
                 <input type="submit" value="Remove Card">
             </form>
 

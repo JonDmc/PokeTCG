@@ -10,10 +10,10 @@ require('dotenv').config() //allows us to access env vars
 
 app.set('view engine', 'ejs') // set the view engine to ejs
 app.use(ejsLayouts) // tells express we want to user layouts
-app.use("/public", express.static("public"))
 app.use(cookieParser()) //cookie parser => give access to req.cookies
 app.use(express.urlencoded({ extended: false })) //body parser => give access to req.body
 app.use(methodOverride("_method"))
+app.use("/public", express.static("public"))
 
 // //CUSTOM LOGIN MIDDLEWARE
 app.use(async (req, res, next) => {

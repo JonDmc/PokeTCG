@@ -19,7 +19,7 @@
 <h2>Available Cards to add</h2>
 
 <% cards.forEach(element=> { %>
-    <form action="decks/<%= decks%>/?_method=PUT " method="put">
+    <form action="decks/<%= deckId%>/?_method=PUT " method="put">
         <button><img src="<%= element.image %>" /></button>
         <input hidden value="<%=element.id%>" name="cardId">
     </form>
