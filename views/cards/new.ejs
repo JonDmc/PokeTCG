@@ -1,14 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav">
+            <li><a class="nav-link" href="/cards">Cards</a></li>
+            <li><a class="nav-link" href="/decks">Decks</a></li>
+            <% if(user){ %>
+                <li><a class="nav-link" href="/users/profile">Profile</a></li>
+                <li><a class="nav-link" href="/users/logout">Logout</a></li>
+
+                <% } else {%>
+                    <li><a class="nav-link" href="/users/new">Sign Up</a></li>
+                    <li><a class="nav-link" href="/users/login">Login</a></li>
+                    <% } %>
+        </ul>
+    </div>
+    </div>
+</nav>
+
 <a href="/cards">Cards</a>
-<div>
-    <div style=" height: 347px; width: 248px; border: .2rem dashed black;">
+<div class="center">
+    <div class="center" style=" height: 347px; width: 248px; border: .2rem dashed white;">
         <img src="<%= card.images.small %> " alt="">
     </div>
-    <form action="cards/new" method="post">
+    <form style="display: inline;" action="cards/new" method="post">
         <input type="submit" value="Claim">
         <input type="hidden" value="<%= card.id %>" name="currentCard">
         <input type="hidden" value="<%= user.id %>" name="userId">
     </form>
-    <form action="cards/new" method="get">
+    <form style="display: inline;" action="cards/new" method="get">
         <input type="submit" value="Skip">
     </form>
 

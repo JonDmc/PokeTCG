@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const ejsLayouts = require('express-ejs-layouts')
+const methodOverride = require("method-override")
 const cookieParser = require('cookie-parser')
 const cryptoJs = require('crypto-js')
 const db = require('./models/index.js')
@@ -9,8 +10,10 @@ require('dotenv').config() //allows us to access env vars
 
 app.set('view engine', 'ejs') // set the view engine to ejs
 app.use(ejsLayouts) // tells express we want to user layouts
+app.use("/public", express.static("public"))
 app.use(cookieParser()) //cookie parser => give access to req.cookies
 app.use(express.urlencoded({ extended: false })) //body parser => give access to req.body
+app.use(methodOverride("_method"))
 
 // //CUSTOM LOGIN MIDDLEWARE
 app.use(async (req, res, next) => {

@@ -1,12 +1,18 @@
 <form action="/users" method="post">
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email">
+    <div class="form-group">
+        <label for="email" class="form-label mt-4">Email:</label>
+        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
+            placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="password" class="form-label mt-4">Password:</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+    </div>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
+    <div class="form-group">
+        <label for="username" class="form-label mt-4">Username:</label>
+        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+    </div>
 
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
-
-    <button type="submit"> Sign up!</button>
+    <button class="btn btn-primary" type="submit"> Sign up!</button>
 </form>

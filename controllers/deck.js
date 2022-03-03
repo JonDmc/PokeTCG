@@ -41,8 +41,14 @@ router.get('/:id', async (req, res) => {
             },
             include: [db.card]
         })
+        // const deck = await db.deck.findOne({
+        //     where: {
+        //         id: req.params.id
+        //     }
+        // })
 
         // const allCardsOnDeck = await cardsOnDeck.getCards()
+        console.log('CARDS ' + cardsOnDeck)
         res.render('decks/view', { cardsOnDeck, deckId: req.params.id })
     } catch (error) {
         console.log(error)
