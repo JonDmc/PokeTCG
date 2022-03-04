@@ -10,7 +10,8 @@
     "express-ejs-layouts": "^2.5.1",
     "method-override": "^3.0.0",
     "pg": "^8.7.3",
-    "sequelize": "^6.17.0"
+    "sequelize": "^6.17.0",
+    "sequelize-cli": "^6.4.1"
   },
   "name": "poketcg",
   "description": "Pokemon has been popular ever since its release in the 1990s and since that day, it has been continously evolving. So much so, the pokemons that you see on tv and gameboys became a reality through Pokemon Cards, in which up to this day is still very popular for its Collection. This app will allow the user to experience the basic trading and collecting part of the game.",

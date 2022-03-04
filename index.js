@@ -20,10 +20,13 @@ app.use(async (req, res, next) => {
     if (req.cookies.userId) {
         //decrypting the incoming user id from the cookie
         const decryptedId = cryptoJs.AES.decrypt(req.cookies.userId, process.env.SECRET)
+
         //converting the decrypted id into a readable string
         const decryptedIdString = decryptedId.toString(cryptoJs.enc.Utf8)
+
         // querying the db for the user with that id
         const user = await db.user.findByPk(decryptedIdString)
+
         // assigning the found user to res.locals.user in the routes, and user in the ejs
         res.locals.user = user
     } else res.locals.user = null
