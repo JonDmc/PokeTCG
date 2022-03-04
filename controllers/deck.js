@@ -56,19 +56,40 @@ router.get('/:id', async (req, res) => {
 //displaying all the cards that the user can add to the deck
 router.get('/:id/add', async (req, res) => {
 
-    const availableCards = await db.card.findAll({
+    const foundDeck = await db.deck.findOne({
         where: {
-            id: res.locals.user.id
+            id: req.params.id
         }
     })
-    const currentUser = await db.user.findOne({
+    const allCards = await db.card.findAll({
         where: {
-            id: res.locals.user.id
+            userId: res.locals.user.id
         }
     })
-    const userCard = await currentUser.getCards()
+    const cardsOnDeck = await foundDeck.getCards()
 
-    res.render('decks/add', { cards: userCard, deckId: req.params.id })
+    // availableCards = allCards - cardsOnDeck
+    //filtering process
+    let arr1 = []
+    allCards.forEach(card => {
+        arr1.push(card.id)
+    })
+    let arr2 = []
+    cardsOnDeck.forEach(card => {
+        arr2.push(card.id)
+    })
+    let arr3 = arr1.filter(id => !arr2.includes(id))
+
+    let availableCards = []
+    for (let i = 0; i < arr3.length; i++) {
+        availableCards.push(await db.card.findOne({
+            where: {
+                id: arr3[i]
+            }
+        }))
+    }
+
+    res.render('decks/add', { cards: availableCards, deckId: req.params.id })
 })
 
 //adding the specific card inside the specific deck
@@ -110,6 +131,7 @@ router.get('/:id/remove', async (req, res) => {
     }
 })
 
+//POST route to remove the card from the deck
 router.post('/:id/remove', async (req, res) => {
     try {
 
@@ -131,6 +153,54 @@ router.post('/:id/remove', async (req, res) => {
     }
 
 })
+
+//GET editing the deck page
+router.get('/:id/edit', async (req, res) => {
+    try {
+        const foundDeck = await db.deck.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+        res.render('decks/edit', { foundDeck })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+//PUT route to update edited deck
+router.put('/:id/edit', async (req, res) => {
+    try {
+        const foundDeck = await db.deck.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+        foundDeck.update({
+            name: req.body.newDeckName
+        })
+        await foundDeck.save()
+        res.redirect('/decks/')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+//DELETE route for the deck
+router.delete('/:id', async (req, res) => {
+    try {
+        const foundDeck = await db.deck.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+        await foundDeck.destroy()
+        res.redirect('/decks/')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 module.exports = router
 

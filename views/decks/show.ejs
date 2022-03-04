@@ -28,12 +28,16 @@
                     </a>
 
                 </h2>
-                <form action="/decks/edit" method="get" style="padding-left: 1rem; display: inline;">
+                <form action="/decks/<%= element.id %> /edit" method="get" style="padding-left: 1rem; display: inline;">
                     <input type="submit" value="Edit">
-
+                </form>
+                <form action="/decks/<%= element.id %>/?_method=DELETE" method="post"
+                    style="padding-left: 1rem; display: inline;">
+                    <input type="submit" value="Delete">
                 </form>
             </div>
             <% }) %>
+
 
     </div>
 

@@ -15,27 +15,11 @@
     </div>
     </div>
 </nav>
+<div>
+    <form action="/decks/<%= foundDeck.id%>/edit/?_method=PUT " method="post">
+        <label for="deckName">Deck Name: </label>
+        <input type="text" name="newDeckName" id="newDeckName">
 
-<a href="/cards">Cards</a>
-<div class="center">
-    <h1>
-        <%= card.name %>
-    </h1>
-    <img src="<%= card.image%> " />
-    <h3>Type: <%= card.type %>
-    </h3>
-    <h3>Attack: <%= card.attack %>
-    </h3>
-    <h3>Weakness: <%= card.weakness %>
-    </h3>
-    <h3>Resistance: <%= card.resistance %>
-    </h3>
-    <h3>Rarity: <%= card.rarity %>
-    </h3>
-
-    <br>
-    <form action="/cards/<%= card.id %> /?_method=DELETE" method="post">
-        <input type="submit" value="Delete Card">
+        <input type="submit" value="Save">
     </form>
-
 </div>

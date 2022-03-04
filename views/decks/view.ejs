@@ -23,16 +23,24 @@
 <hr>
 <% if (cardsOnDeck.cards.length> 0) { %>
     <% cardsOnDeck.cards.forEach(element=> { %>
-        <img src="<%= element.image %> " />
+        <a href="/cards/<%= element.id %> "><img src="<%= element.image %> " /></a>
         <% }) %>
             <div>
-                <form action="/decks/<%= cardsOnDeck.id%>/add" method="get">
-                    <input type="submit" value="Add Card">
-                </form>
+                <% if (cardsOnDeck.cards.length < 10) { %>
+                    <form action="/decks/<%= cardsOnDeck.id%>/add" method="get">
+                        <input type="submit" value="Add Card">
+                    </form>
 
-                <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get">
-                    <input type="submit" value="Remove Card">
-                </form>
+                    <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get">
+                        <input type="submit" value="Remove Card">
+                    </form>
+
+                    <% } else { %>
+                        <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get">
+                            <input type="submit" value="Remove Card">
+                        </form>
+
+                        <% } %>
 
             </div>
 

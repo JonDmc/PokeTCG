@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.deck.belongsTo(models.user)
-      models.deck.belongsToMany(models.card, { through: 'cardDecks' })
+      models.deck.belongsToMany(models.card, { through: 'cardDecks', onDelete: 'cascade' })
     }
   }
   deck.init({

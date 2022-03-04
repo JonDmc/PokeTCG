@@ -3,7 +3,7 @@ const router = express.Router()
 const axios = require('axios')
 const db = require('../models')
 
-
+//GET route for displaying all the cards
 router.get('/', async (req, res) => {
     try {
         const viewCards = await db.card.findAll({
@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
     }
 })
 
+//GET route for new.ejs
 router.get('/new', async (req, res) => {
     if (req.cookies.userId) {
         const result = await axios.get(`https://api.pokemontcg.io/v2/cards`)
@@ -29,7 +30,7 @@ router.get('/new', async (req, res) => {
     }
 })
 
-
+//POST route for getting new cards from new.ejs
 router.post('/new', async (req, res) => {
     const result = await axios.get(`https://api.pokemontcg.io/v2/cards?q=id:${req.body.currentCard}`)
     const searchResults = result.data.data[0] //data array
@@ -39,21 +40,18 @@ router.post('/new', async (req, res) => {
     let weakness
     let resistance
     for (const index in attackArr) { //getting the attack name inside the attack array
-        // if (Object.hasOwnProperty.call(attack, index)) {
         const element = attackArr[index];//getting the attack name from the array
-        // console.log('attack:' + element.name)
-        // }
         attacks.push(element.name)//storing the names in attacks array
-        // console.log(attacks)
     }
+    //getting the weakeness type from the weaknesses[obj]
     if (searchResults.weaknesses) {
         searchResults.weaknesses.forEach(element => {//getting the type inside an array of obj
             weakness = element.type
-            // console.log(element.type)
         })
     } else weakness = 'N/A'
 
 
+    //getting the resistance type from the resistances[obj]
     if (searchResults.resistances) {
         searchResults.resistances.forEach(element => {
             resistance = element.type
@@ -78,6 +76,7 @@ router.post('/new', async (req, res) => {
     res.redirect('./new')
 })
 
+//GET route for viewing specific cards
 router.get('/:id', async (req, res) => {
     try {
         const result = await db.card.findOne({
@@ -86,6 +85,21 @@ router.get('/:id', async (req, res) => {
             }
         })
         res.render('cards/view', { card: result })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+//POST route for deleting specific card
+router.delete('/:id', async (req, res) => {
+    try {
+        const foundCard = await db.card.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+        await foundCard.destroy()
+        res.redirect('/cards/')
     } catch (error) {
         console.log(error)
     }
