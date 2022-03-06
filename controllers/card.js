@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 const db = require('../models')
+const { user } = require('pg/lib/defaults')
 
 //GET route for displaying all the cards
 router.get('/', async (req, res) => {
@@ -20,10 +21,27 @@ router.get('/', async (req, res) => {
 //GET route for new.ejs
 router.get('/new', async (req, res) => {
     if (req.cookies.userId) {
-        const result = await axios.get(`https://api.pokemontcg.io/v2/cards`)
+
+        //getting the current time
+        const today = new Date()
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+        var dateTime = date + ' ' + time
+
+        //getting the difference
+        const d1 = new Date(dateTime)
+        const d2 = new Date(res.locals.user.timestamp)
+        const difference = Math.abs(d1 - d2)
+        const hrs = difference / (1000 * 60 * 60)
+        const mins = (hrs - Math.floor(hrs)) * 60
+        const secs = (mins - Math.floor(mins)) * 60
+        const timer = Math.floor(hrs) + ":" + Math.floor(mins) + ":" + Math.floor(secs)
+
+        const result = await axios.get(`https://api.pokemontcg.io/v2/cards?q=supertype:pokemon`)
         const searchResults = result.data.data
         let rand = Math.floor(Math.random() * searchResults.length)
-        res.render('cards/new', { card: searchResults[rand], user: res.locals.user })
+        res.render('cards/new', { card: searchResults[rand], user: res.locals.user, currentTime: dateTime, timer, hrs })
+
 
     } else {
         res.redirect('user/login')
@@ -69,6 +87,10 @@ router.post('/new', async (req, res) => {
             rarity: searchResults.rarity,
             userId: req.body.userId
         })
+        res.locals.user.update({
+            timestamp: req.body.currentTime
+        })
+        res.locals.user.save()
 
     } catch (err) {
         console.log(err)

@@ -1,17 +1,15 @@
-<h1 class="center">Welcome to Pokemon: TCG</h1>
+<div class="container" style="padding-top: 10rem;">
+    <h1 class="center">Welcome to Pokemon: TCG</h1>
+    <div class="center">
+        <% if(user){ %>
+            <button style="margin: 1rem;"><a class="nav-link" href="/users/profile">Profile</a></button>
+            <button style="margin: 1rem;"><a class="nav-link" href="/users/logout">Logout</a></button>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav">
-            <% if(user){ %>
-                <li><a class="nav-link" href="/users/profile">Profile</a></li>
-                <li><a class="nav-link" href="/users/logout">Logout</a></li>
+            <% } else {%>
+                <button style="margin: 1rem;"><a class="nav-link" href="/users/new">Sign Up</a></button>
+                <button style="margin: 1rem;"><a class="nav-link" href="/users/login">Login</a></button>
+                <% } %>
 
-                <% } else {%>
-                    <li><a class="nav-link" href="/users/new">Sign Up</a></li>
-                    <li><a class="nav-link" href="/users/login">Login</a></li>
-                    <% } %>
-        </ul>
     </div>
-    </div>
-</nav>
+
+</div>

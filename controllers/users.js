@@ -10,6 +10,7 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/profile', (req, res) => {
+
     res.render('user/profile')
 })
 

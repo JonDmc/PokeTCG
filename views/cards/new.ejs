@@ -21,13 +21,23 @@
     <div class="center" style=" height: 347px; width: 248px; border: .2rem dashed white;">
         <img src="<%= card.images.small %> " alt="">
     </div>
-    <form style="display: inline;" action="/cards/new" method="post">
-        <input type="submit" value="Claim">
-        <input type="hidden" value="<%= card.id %>" name="currentCard">
-        <input type="hidden" value="<%= user.id %>" name="userId">
-    </form>
-    <form style="display: inline;" action="/cards/new" method="get">
-        <input type="submit" value="Skip">
-    </form>
+
+    <% if (hrs>= 2) { %>
+
+        <form style="display: inline;" action="/cards/new" method="post">
+            <input type="submit" value="Claim">
+            <input type="hidden" value="<%= card.id %>" name="currentCard">
+            <input type="hidden" value="<%= user.id %>" name="userId">
+            <input type="hidden" value="<%= currentTime %>" name="currentTime">
+        </form>
+        <form style="display: inline;" action="/cards/new" method="get">
+            <input type="submit" value="Skip">
+        </form>
+        <% } else { %>
+            <h4>Time Elapsed: <%= timer%>
+            </h4>
+
+            <%}%>
+
 
 </div>

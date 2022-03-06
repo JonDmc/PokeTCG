@@ -1,4 +1,8 @@
-<form action="/users" method="post">
+<div style="padding-left: 2rem;">
+    <a href="/users/login">Back</a>
+
+</div>
+<form action="/users" method="post" class="container">
     <div class="form-group">
         <label for="email" class="form-label mt-4">Email:</label>
         <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
@@ -14,5 +18,7 @@
         <input type="text" class="form-control" name="username" id="username" placeholder="Username">
     </div>
 
-    <button class="btn btn-primary" type="submit"> Sign up!</button>
+    <div style="margin-top: 1rem;">
+        <button class="btn btn-primary" type="submit"> Sign up!</button>
+    </div>
 </form>
