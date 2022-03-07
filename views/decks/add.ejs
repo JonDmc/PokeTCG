@@ -26,12 +26,15 @@
     </div>
 </nav>
 
-<h2>Available Cards to add</h2>
+<h2 style="padding-left: 1rem;">Available Cards to add</h2>
 <hr>
-<% cards.forEach(element=> { %>
-    <!-- <form action="/decks/<%= deckId%>/?_method=PUT " method="put" style="display: inline; position: relative;"> -->
-    <form action="/decks/<%= deckId%>/add" method="post" style="display: inline; position: relative;">
-        <button><img src="<%= element.image %>" /></button>
-        <input hidden value="<%=element.id%>" name="cardId">
-    </form>
-    <% }) %>
+<div style="padding: 1rem;">
+    <% cards.forEach(element=> { %>
+        <!-- <form action="/decks/<%= deckId%>/?_method=PUT " method="put" style="display: inline; position: relative;"> -->
+        <form action="/decks/<%= deckId%>/add" method="post" style="display: inline; position: relative;">
+            <button><img src="<%= element.image %>" /></button>
+            <input hidden value="<%=element.id%>" name="cardId">
+        </form>
+        <% }) %>
+
+</div>

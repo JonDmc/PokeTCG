@@ -26,18 +26,21 @@
     </div>
 </nav>
 
-<h2>Cards to remove</h2>
+<h2 style="padding: 1rem;">Cards to remove</h2>
 <hr>
-<% if (cardsOnDeck.cards.length <=0) { %>
-    <h4>Deck is empty</h4>
+<div style="padding: 1rem;">
 
-    <% } else {%>
+    <% if (cardsOnDeck.cards.length <=0) { %>
+        <h4>Deck is empty</h4>
 
-        <% cardsOnDeck.cards.forEach(element=> { %>
-            <form action="/decks/<%= deckId%>/remove" method="post" style="display: inline; position: relative;">
-                <button><img src="<%= element.image %>" /></button>
-                <input hidden value="<%=element.id%>" name="cardId">
-            </form>
-            <% }) %>
+        <% } else {%>
 
-                <%}%>
+            <% cardsOnDeck.cards.forEach(element=> { %>
+                <form action="/decks/<%= deckId%>/remove" method="post" style="display: inline; position: relative;">
+                    <button><img src="<%= element.image %>" /></button>
+                    <input hidden value="<%=element.id%>" name="cardId">
+                </form>
+                <% }) %>
+
+                    <%}%>
+</div>

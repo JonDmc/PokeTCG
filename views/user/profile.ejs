@@ -49,34 +49,40 @@
     <hr>
     <h1>Decks</h1>
     <hr>
-    <% decks.forEach((element,index)=> { %>
-        <div>
-            <div class="card border-light mb-3" style="max-width: 70rem;" style="display: inline;">
-                <div class="card-header">
-                    <h2>
-                        <a href="/decks/<%= element.id %> ">
-                            <%= element.name %>
-                        </a>
-                    </h2>
-                </div>
-                <div class="card-body">
-                    <% if(theseCards[index].length> 0) {%>
-                        <% for( let i=0; i < theseCards[index].length; i++ ) { %>
-                            <img src="<%= theseCards[index][i].image %> "
-                                style="width: 100px; height: 120px; display:inline;" />
-                            <% } %>
-                                <% } else { %>
-                                    <em>
-                                        <h5>Deck is empty</h5>
+    <% if (decks.length <=0) { %>
+        <em>
+            <h5>You don't have any decks yet...</h5>
 
-                                    </em>
-                                    <%} %>
-                </div>
-            </div>
-        </div>
-        <% }) %>
+        </em>
+        <% } else { %>
 
-</div>
-<div class="space">
+            <% decks.forEach((element,index)=> { %>
+                <div>
+                    <div class="card border-light mb-3" style="max-width: 70rem;" style="display: inline;">
+                        <div class="card-header">
+                            <h2>
+                                <a href="/decks/<%= element.id %> ">
+                                    <%= element.name %>
+                                </a>
+                            </h2>
+                        </div>
+                        <!-- displays the cards inside the deck -->
+                        <div class="card-body">
+                            <% if(theseCards[index].length> 0) {%>
+                                <% for( let i=0; i < theseCards[index].length; i++ ) { %>
+                                    <img src="<%= theseCards[index][i].image %> "
+                                        style="width: 100px; height: 120px; display:inline;" />
+                                    <% } %>
+                                        <% } else { %>
+                                            <em>
+                                                <h5>Deck is empty</h5>
+
+                                            </em>
+                                            <%} %>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } %>
 
 </div>

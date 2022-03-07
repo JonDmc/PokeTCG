@@ -1,54 +1,43 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav">
-            <li><a class="nav-link" href="/cards">Cards</a></li>
-            <li><a class="nav-link" href="/decks">Decks</a></li>
-            <% if(user){ %>
-                <li><a class="nav-link" href="/users/profile">Profile</a></li>
-                <li><a class="nav-link" href="/users/logout">Logout</a></li>
+    <div class="container-fluid">
 
-                <% } else {%>
-                    <li><a class="nav-link" href="/users/new">Sign Up</a></li>
-                    <li><a class="nav-link" href="/users/login">Login</a></li>
-                    <% } %>
-        </ul>
-    </div>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li><a class="nav-link" href="/users/profile">Profile</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Cards</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/cards/new">New</a>
+                        <a class="dropdown-item" href="/cards">View</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Decks</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/decks/new">New</a>
+                        <a class="dropdown-item" href="/decks">View</a>
+                    </div>
+                </li>
+                <li><a class="nav-link" href="/users/logout">Logout</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 <!-- page that will show the available cards that can be added to the deck -->
 <a href="/decks">Back</a>
-<h2 class="center">
+<h2 class="center" style="padding: 1rem;">
     <%= cardsOnDeck.name %>
 </h2>
 <hr>
-<% if (cardsOnDeck.cards.length> 0) { %>
-    <% cardsOnDeck.cards.forEach(element=> { %>
-        <a href="/cards/<%= element.id %> "><img src="<%= element.image %> " /></a>
-        <% }) %>
-            <div class="space center">
-                <% if (cardsOnDeck.cards.length < 10) { %>
-                    <form action="/decks/<%= cardsOnDeck.id%>/add" method="get" style="display: inline;">
-                        <input type="submit" value="Add Card" class="btn btn-primary">
-                    </form>
-
-                    <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
-                        <input type="submit" value="Remove Card" class="btn btn-primary">
-                    </form>
-
-                    <% } else { %>
-                        <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
-                            <input type="submit" value="Remove Card" class="btn btn-primary">
-                        </form>
-
-                        <% } %>
-
-            </div>
-
-            <% } else { %>
-                <em>
-                    <h5 class="center">Deck is empty</h5>
-
-                    <div class="space center">
+<div style="padding: 1rem;">
+    <% if (cardsOnDeck.cards.length> 0) { %>
+        <% cardsOnDeck.cards.forEach(element=> { %>
+            <a href="/cards/<%= element.id %> "><img src="<%= element.image %> " /></a>
+            <% }) %>
+                <div class="space center">
+                    <% if (cardsOnDeck.cards.length < 10) { %>
                         <form action="/decks/<%= cardsOnDeck.id%>/add" method="get" style="display: inline;">
                             <input type="submit" value="Add Card" class="btn btn-primary">
                         </form>
@@ -57,6 +46,30 @@
                             <input type="submit" value="Remove Card" class="btn btn-primary">
                         </form>
 
-                    </div>
-                </em>
-                <%} %>
+                        <% } else { %>
+                            <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
+                                <input type="submit" value="Remove Card" class="btn btn-primary">
+                            </form>
+
+                            <% } %>
+
+                </div>
+
+                <% } else { %>
+                    <em>
+                        <h5 class="center">Deck is empty</h5>
+
+                        <div class="space center">
+                            <form action="/decks/<%= cardsOnDeck.id%>/add" method="get" style="display: inline;">
+                                <input type="submit" value="Add Card" class="btn btn-primary">
+                            </form>
+
+                            <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
+                                <input type="submit" value="Remove Card" class="btn btn-primary">
+                            </form>
+
+                        </div>
+                    </em>
+                    <%} %>
+
+</div>

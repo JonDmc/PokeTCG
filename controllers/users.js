@@ -25,8 +25,6 @@ router.get('/profile', async (req, res) => {
         })
 
         const arr1 = []//getting cards
-
-        console.log("legnth", viewDeck.length)
         for (let i = 0; i < viewDeck.length; i++) { //getting the no. of decks created
             const cardsOnDeck = await db.deck.findOne({ //getting the cards from those decks
                 where: {
@@ -85,7 +83,7 @@ router.post('/', async (req, res) => {
                     //store the encrypted id in the cookie of the res obj
                     res.cookie('userId', encryptedUserIdString)
                     // redirect back to home page
-                    res.redirect('/')
+                    res.redirect('/users/profile')
                 }
 
             }
@@ -120,7 +118,7 @@ router.post('/login', async (req, res) => {
         //store the encrypted id in the cookie of the res obj
         res.cookie('userId', encryptedUserIdString)
         // redirect back to home page
-        res.redirect('./profile')
+        res.redirect('/users/profile')
     }
 })
 
