@@ -1,11 +1,22 @@
 # Project 2 - Pokemon TC-GO
 Pokemon has been popular ever since its release in the 1990s and since that day, it has been continously evolving. So much so, the pokemons that you see on tv and gameboys became a reality through Pokemon Cards, in which up to this day is still very popular for its Collection. This app will allow the user to experience the basic trading and collecting part of the game.
 
+## Try-it out
+![Pokemon TC-Go](https://pokemon-tc-go.herokuapp.com/)
+
 ## API / Technologies
 - [Pokemon TCG](https://pokemontcg.io/) - a pokemon api containing in-depth data regarding pokemon cards
 - NPM list
     - express, express-ejs-layout, axios, methodOverride - for the routes/controllers
 - bootswatch and fontspace for layouts
+
+# Installation
+1. `Fork` and `clone` this repo [Pokemon:TC-Go](https://github.com/JonDmc/PokeTCG)
+2. Run `npm install` to install all the dependencies
+3. Setup your postgres database (this app already has two(2) existing models (excluding joint table))
+4. Create a database named `poketcg` by running `create database poketcg` on your postgres terminal for WSL, or `createdb poketcg` on MAC.
+5. Run `sequelize db:migrate` to run migrations
+6. Run `nodemon` to start your application. If you haven't installed it, run `npm install -g nodemon` to install it globally.
 
 ## ERDs
 ![Pokemon TCG](erd.drawio.png)
@@ -33,22 +44,20 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
 | POST | `/decks/:id/remove` | removing the card in the specific deck |
 
 # Wireframes
-### Collecting part (Before)
+### Collecting part 
 #### Log-in page
-![Login page](./wireframes/login.JPG)
+![Login page](./wireframes/new-login-new.JPG)
 #### Sign-up page
-![SignUp page](./wireframes/signup.JPG)
+![SignUp page](./wireframes/new-signup.JPG)
 #### Profile page
 ![Profile page](./wireframes/profile.JPG)
+![Profile page](./wireframes/new-profile.JPG)
 #### Cards page
-![Cards page](./wireframes/cards.JPG)
-![Cards/:id page](./wireframes/card-indiv.JPG)
-![Cards/new page](./wireframes/card-new.JPG)
+![Cards page](./wireframes/new-cards.JPG)
+![Cards/:id page](./wireframes/new-card-indiv.JPG)
+![Cards/new page](./wireframes/new-card-new.JPG)
 #### Decks page
-![Decks page](./wireframes/decks.JPG)
-![Decks/:id page](./wireframes/deck-indiv.JPG)
-![Decks/new page](./wireframes/deck-new.JPG)
-![Decks/update page](./wireframes/deck-update.JPG)
+![Decks page](./wireframes/new-decks.JPG)
 
 # User Stories
 - As a user, I want to collect/trade cards
@@ -68,6 +77,36 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
 # Stretch Goals
 ### Collecting part (Achieved)
 - [x] Be able to make the user wait for 2hrs to have the ability to generate a new card
+
+## Code Highlights
+``` const arr1 = []//getting cards
+        for (let i = 0; i < viewDeck.length; i++) { //getting the no. of decks created
+            const cardsOnDeck = await db.deck.findOne({ //getting the cards from those decks
+                where: {
+                    id: viewDeck[i].id
+                }
+            })
+            arr1.push(cardsOnDeck.getCards()) //pushing the cards in an array to call later
+        }
+        const theseCards = await Promise.all(arr1) ```
+
+``` 
+<div class="card-body"> 
+    <% if(theseCards[index].length> 0) {%>
+        <% for( let i=0; i < theseCards[index].length; i++ ) { %>
+            <img src="<%= theseCards[index][i].image %> "
+                style="width: 100px; height: 120px; display:inline;" />
+        <% } %>
+    <% } else { %>
+        <em>
+            <h5>Deck is empty</h5>
+
+        </em>
+        <%} %>
+</div> ```
+
+
+# Stretch Goals
 ### Trading part (Future Goals)
 - [ ] Be able to post a specific card for trading
 - [ ] Be able to comment on different posts with a specific card that the user want to trade with
