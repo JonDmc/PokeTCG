@@ -77,7 +77,8 @@ router.post('/new', async (req, res) => {
     } else resistance = 'N/A'
 
     try {
-        await db.card.create({
+        // const [newCard, cardCreated] = await db.card.findOrCreate({
+        const [newCard, cardCreated] = await db.card.findOrCreate({
             name: searchResults.name,
             image: searchResults.images.small,
             type: searchResults.types[0],
@@ -87,6 +88,9 @@ router.post('/new', async (req, res) => {
             rarity: searchResults.rarity,
             userId: req.body.userId
         })
+        // if (newCard) {
+        //     res.redirect('/cards/new')
+        // }
         res.locals.user.update({
             timestamp: req.body.currentTime
         })
@@ -95,7 +99,7 @@ router.post('/new', async (req, res) => {
     } catch (err) {
         console.log(err)
     }
-    res.redirect('./new')
+    res.redirect('/cards/new')
 })
 
 //GET route for viewing specific cards
