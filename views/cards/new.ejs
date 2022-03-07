@@ -42,7 +42,7 @@
         <% if (hrs>= 2) { %>
 
             <form style="display: inline;" action="/cards/new" method="post">
-                <input type="submit" value="Claim" class="btn btn-primary btn-sm">
+                <input type="submit" value="Claim" class="btn btn-primary">
                 <input type="hidden" value="<%= card.id %>" name="currentCard">
                 <input type="hidden" value="<%= user.id %>" name="userId">
                 <input type="hidden" value="<%= currentTime %>" name="currentTime">
