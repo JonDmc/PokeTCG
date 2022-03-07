@@ -16,8 +16,8 @@
     </div>
 </nav>
 <!-- page that will show the available cards that can be added to the deck -->
-
-<h2>
+<a href="/decks">Back</a>
+<h2 class="center">
     <%= cardsOnDeck.name %>
 </h2>
 <hr>
@@ -25,18 +25,18 @@
     <% cardsOnDeck.cards.forEach(element=> { %>
         <a href="/cards/<%= element.id %> "><img src="<%= element.image %> " /></a>
         <% }) %>
-            <div>
+            <div class="space center">
                 <% if (cardsOnDeck.cards.length < 10) { %>
-                    <form action="/decks/<%= cardsOnDeck.id%>/add" method="get">
+                    <form action="/decks/<%= cardsOnDeck.id%>/add" method="get" style="display: inline;">
                         <input type="submit" value="Add Card">
                     </form>
 
-                    <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get">
+                    <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
                         <input type="submit" value="Remove Card">
                     </form>
 
                     <% } else { %>
-                        <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get">
+                        <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
                             <input type="submit" value="Remove Card">
                         </form>
 
@@ -46,14 +46,14 @@
 
             <% } else { %>
                 <em>
-                    <h5>Deck is empty</h5>
+                    <h5 class="center">Deck is empty</h5>
 
-                    <div>
-                        <form action="/decks/<%= cardsOnDeck.id%>/add" method="get">
+                    <div class="space center">
+                        <form action="/decks/<%= cardsOnDeck.id%>/add" method="get" style="display: inline;">
                             <input type="submit" value="Add Card">
                         </form>
 
-                        <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get">
+                        <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
                             <input type="submit" value="Remove Card">
                         </form>
 

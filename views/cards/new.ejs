@@ -1,43 +1,61 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav">
-            <li><a class="nav-link" href="/cards">Cards</a></li>
-            <li><a class="nav-link" href="/decks">Decks</a></li>
-            <% if(user){ %>
-                <li><a class="nav-link" href="/users/profile">Profile</a></li>
-                <li><a class="nav-link" href="/users/logout">Logout</a></li>
+    <div class="container-fluid">
 
-                <% } else {%>
-                    <li><a class="nav-link" href="/users/new">Sign Up</a></li>
-                    <li><a class="nav-link" href="/users/login">Login</a></li>
-                    <% } %>
-        </ul>
-    </div>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li><a class="nav-link" href="/users/profile">Profile</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Cards</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/cards/new">New</a>
+                        <a class="dropdown-item" href="/cards">View</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Decks</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/decks/new">New</a>
+                        <a class="dropdown-item" href="/decks">View</a>
+                    </div>
+                </li>
+                <li><a class="nav-link" href="/users/logout">Logout</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
+<%# if(user){ <li><a class="nav-link" href="/users/profile">Profile</a></li>
+    <li><a class="nav-link" href="/users/logout">Logout</a></li>
 
-<a href="/cards">Cards</a>
-<div class="center">
-    <div class="center" style=" height: 347px; width: 248px; border: .2rem dashed white;">
-        <img src="<%= card.images.small %> " alt="">
+    } else {
+    <li><a class="nav-link" href="/users/new">Sign Up</a></li>
+    <li><a class="nav-link" href="/users/login">Login</a></li>
+    } %>
+    <a href="/cards">Back</a>
+
+    <div class="center" style="padding-top: 10rem; position: relative;">
+        <div class="center" style=" height: 347px; width: 248px; border: .2rem dashed white;">
+            <img src="<%= card.images.small %> " alt="">
+        </div>
+
+        <% if (hrs>= 2) { %>
+
+            <form style="display: inline;" action="/cards/new" method="post">
+                <input type="submit" value="Claim">
+                <input type="hidden" value="<%= card.id %>" name="currentCard">
+                <input type="hidden" value="<%= user.id %>" name="userId">
+                <input type="hidden" value="<%= currentTime %>" name="currentTime">
+            </form>
+            <form style="display: inline;" action="/cards/new" method="get">
+                <input type="submit" value="Skip">
+            </form>
+
+            <% } else { %>
+                <h4>Time Elapsed: <%= timer%>
+                </h4>
+
+                <%}%>
+
+
     </div>
-
-    <% if (hrs>= 2) { %>
-
-        <form style="display: inline;" action="/cards/new" method="post">
-            <input type="submit" value="Claim">
-            <input type="hidden" value="<%= card.id %>" name="currentCard">
-            <input type="hidden" value="<%= user.id %>" name="userId">
-            <input type="hidden" value="<%= currentTime %>" name="currentTime">
-        </form>
-        <form style="display: inline;" action="/cards/new" method="get">
-            <input type="submit" value="Skip">
-        </form>
-        <% } else { %>
-            <h4>Time Elapsed: <%= timer%>
-            </h4>
-
-            <%}%>
-
-
-</div>

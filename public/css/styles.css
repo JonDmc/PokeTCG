@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "customFont";
+  src: url(https://www.fontspace.com/pocket-monk-font-f23540);
+}
+
 .container {
     margin: 0 auto;
     max-width: 20rem; 
@@ -13,5 +18,13 @@
 }
 
 .container-1{
-  border: 0.5rem solid black;
+  border: .1rem groove lightgray;
+  border-radius: 10px;
+  margin: 0 auto;
+  height: 30rem;
+}
+
+.font {
+  font-family: 'customFont';
+  color: yellow;
 }
