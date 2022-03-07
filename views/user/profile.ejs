@@ -1,30 +1,81 @@
-<h1 class="center">Hello! <%= user.username%>
+<h1 class="center" style="padding: 2rem 1rem;">Hello! <%= user.username%>
 </h1>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav">
-            <li><a class="nav-link" href="/cards">Cards</a></li>
-            <li><a class="nav-link" href="/decks">Decks</a></li>
-            <% if(user){ %>
-                <li><a class="nav-link" href="/users/profile">Profile</a></li>
-                <li class="d-flex"><a class="nav-link" href="/users/logout">Logout</a></li>
 
-                <% } else {%>
-                    <li><a class="nav-link" href="/users/new">Sign Up</a></li>
-                    <li><a class="nav-link" href="/users/login">Login</a></li>
-                    <% } %>
-        </ul>
-    </div>
-    </div>
-</nav>
-<div>
-    <h1 style="padding-left: 3rem;">Card Collection
-    </h1>
-    <div class="container-1">
-        <div>
-            something
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li><a class="nav-link" href="/users/profile">Profile</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Cards</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/cards/new">New</a>
+                        <a class="dropdown-item" href="/cards">View</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Decks</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/decks/new">New</a>
+                        <a class="dropdown-item" href="/decks">View</a>
+                    </div>
+                </li>
+                <li><a class="nav-link" href="/users/logout">Logout</a></li>
+            </ul>
         </div>
     </div>
+</nav>
+
+
+<div style="padding: 3rem;">
+    <h1 class="font">Card Collection
+    </h1>
+    <hr>
+    <div class="card border-light mb-3" style="position: relative; border-radius: 1rem; height: 30rem; padding: 1rem;">
+        <div>
+            <% cards.forEach(element=> { %>
+                <div style="display: inline; position: relative;">
+                    <a href="/cards/<%= element.id %> ">
+                        <img style="width: 100px; height: 120px;" src="<%= element.image%> " />
+                    </a>
+                </div>
+                <% }) %>
+
+        </div>
+    </div>
+    <hr>
+    <h1>Decks</h1>
+    <hr>
+    <% decks.forEach((element,index)=> { %>
+        <div>
+            <div class="card border-light mb-3" style="max-width: 70rem;" style="display: inline;">
+                <div class="card-header">
+                    <h2>
+                        <a href="/decks/<%= element.id %> ">
+                            <%= element.name %>
+                        </a>
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <% if(theseCards[index].length> 0) {%>
+                        <% for( let i=0; i < theseCards[index].length; i++ ) { %>
+                            <img src="<%= theseCards[index][i].image %> "
+                                style="width: 100px; height: 120px; display:inline;" />
+                            <% } %>
+                                <% } else { %>
+                                    <em>
+                                        <h5>Deck is empty</h5>
+
+                                    </em>
+                                    <%} %>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+
 </div>
 <div class="space">
 
