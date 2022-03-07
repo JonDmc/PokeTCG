@@ -79,7 +79,8 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
 - [x] Be able to make the user wait for 2hrs to have the ability to generate a new card
 
 ## Code Highlights
-`` const arr1 = []//getting cards
+```
+const arr1 = []//getting cards
         for (let i = 0; i < viewDeck.length; i++) { //getting the no. of decks created
             const cardsOnDeck = await db.deck.findOne({ //getting the cards from those decks
                 where: {
@@ -88,7 +89,8 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
             })
             arr1.push(cardsOnDeck.getCards()) //pushing the cards in an array to call later
         }
-        const theseCards = await Promise.all(arr1) ``
+        const theseCards = await Promise.all(arr1) 
+```
 
 # Stretch Goals
 ### Trading part (Future Goals)
