@@ -20,21 +20,25 @@ router.get('/', async (req, res) => {
     }
 })
 router.get('/new', async (req, res) => {
-    res.render('decks/new')
+    res.render('decks/new', { error: null })
 })
 
 //creating a new empty deck
 router.post('/new', async (req, res) => {
-    try {
-        await db.deck.findOrCreate({
-            where: {
-                name: req.body.deckName,
-                userId: res.locals.user.id
-            }
-        })
+    if (req.body.deckName) {
+        try {
+            await db.deck.findOrCreate({
+                where: {
+                    name: req.body.deckName,
+                    userId: res.locals.user.id
+                }
+            })
+            res.redirect('/decks')
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
         res.redirect('/decks')
-    } catch (error) {
-        console.log(error)
     }
 })
 
