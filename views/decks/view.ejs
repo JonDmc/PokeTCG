@@ -28,16 +28,16 @@
             <div class="space center">
                 <% if (cardsOnDeck.cards.length < 10) { %>
                     <form action="/decks/<%= cardsOnDeck.id%>/add" method="get" style="display: inline;">
-                        <input type="submit" value="Add Card">
+                        <input type="submit" value="Add Card" class="btn btn-primary">
                     </form>
 
                     <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
-                        <input type="submit" value="Remove Card">
+                        <input type="submit" value="Remove Card" class="btn btn-primary">
                     </form>
 
                     <% } else { %>
                         <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
-                            <input type="submit" value="Remove Card">
+                            <input type="submit" value="Remove Card" class="btn btn-primary">
                         </form>
 
                         <% } %>
@@ -50,11 +50,11 @@
 
                     <div class="space center">
                         <form action="/decks/<%= cardsOnDeck.id%>/add" method="get" style="display: inline;">
-                            <input type="submit" value="Add Card">
+                            <input type="submit" value="Add Card" class="btn btn-primary">
                         </form>
 
                         <form action="/decks/<%= cardsOnDeck.id %>/remove" method="get" style="display: inline;">
-                            <input type="submit" value="Remove Card">
+                            <input type="submit" value="Remove Card" class="btn btn-primary">
                         </form>
 
                     </div>

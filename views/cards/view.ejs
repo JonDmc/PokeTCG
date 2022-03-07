@@ -39,7 +39,7 @@
                     <h3>Type:</h3>
                 </th>
                 <td>
-                    <h3>
+                    <h3 style="color: white;">
                         <%= card.type %>
                     </h3>
                 </td>
@@ -50,7 +50,7 @@
                     <h3>Attack:</h3>
                 </th>
                 <td>
-                    <h3>
+                    <h3 style="color: white;">
                         <%= card.attack %>
                     </h3>
                 </td>
@@ -61,7 +61,7 @@
                     <h3>Weakness:</h3>
                 </th>
                 <td>
-                    <h3>
+                    <h3 style="color: white;">
                         <%= card.weakness %>
                     </h3>
                 </td>
@@ -72,7 +72,7 @@
                     <h3>Resistance:</h3>
                 </th>
                 <td>
-                    <h3>
+                    <h3 style="color: white;">
                         <%= card.resistance %>
                     </h3>
                 </td>
@@ -83,7 +83,7 @@
                     <h3>Rarity:</h3>
                 </th>
                 <td>
-                    <h3>
+                    <h3 style="color: white;">
                         <%= card.rarity %>
                     </h3>
                 </td>
@@ -92,7 +92,7 @@
 
     <br>
     <form action="/cards/<%= card.id %>/?_method=DELETE" method="post">
-        <input type="submit" value="Delete Card">
+        <input type="submit" value="Delete Card" class="btn btn-primary">
     </form>
 
 </div>

@@ -39,11 +39,12 @@
 
                 </h2>
                 <form action="/decks/<%= element.id %> /edit" method="get" style="padding-left: 1rem; display: inline;">
-                    <input type="submit" value="Edit">
+                    <input type="submit" value="Edit" class="btn btn-primary">
+
                 </form>
                 <form action="/decks/<%= element.id %>/?_method=DELETE" method="post"
                     style="padding-left: 1rem; display: inline;">
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Delete" class="btn btn-primary">
                 </form>
             </div>
             <% }) %>
