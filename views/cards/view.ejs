@@ -26,21 +26,69 @@
     </div>
 </nav>
 <a href="/cards">Back</a>
-<div class="center">
+<div class="center space">
     <h1>
         <%= card.name %>
     </h1>
-    <img src="<%= card.image%> " />
-    <h3>Type: <%= card.type %>
-    </h3>
-    <h3>Attack: <%= card.attack %>
-    </h3>
-    <h3>Weakness: <%= card.weakness %>
-    </h3>
-    <h3>Resistance: <%= card.resistance %>
-    </h3>
-    <h3>Rarity: <%= card.rarity %>
-    </h3>
+    <img src="<%= card.image%> " style="padding-bottom: 1rem;" />
+
+    <table class="table table-hover center" style="width: 20rem;">
+        <tbody>
+            <tr class="table-secondary">
+                <th scope="row">
+                    <h3>Type:</h3>
+                </th>
+                <td>
+                    <h3>
+                        <%= card.type %>
+                    </h3>
+                </td>
+        </tbody>
+        <tbody>
+            <tr class="table-secondary">
+                <th scope="row">
+                    <h3>Attack:</h3>
+                </th>
+                <td>
+                    <h3>
+                        <%= card.attack %>
+                    </h3>
+                </td>
+        </tbody>
+        <tbody>
+            <tr class="table-secondary">
+                <th scope="row">
+                    <h3>Weakness:</h3>
+                </th>
+                <td>
+                    <h3>
+                        <%= card.weakness %>
+                    </h3>
+                </td>
+        </tbody>
+        <tbody>
+            <tr class="table-secondary">
+                <th scope="row">
+                    <h3>Resistance:</h3>
+                </th>
+                <td>
+                    <h3>
+                        <%= card.resistance %>
+                    </h3>
+                </td>
+        </tbody>
+        <tbody>
+            <tr class="table-secondary">
+                <th scope="row">
+                    <h3>Rarity:</h3>
+                </th>
+                <td>
+                    <h3>
+                        <%= card.rarity %>
+                    </h3>
+                </td>
+        </tbody>
+    </table>
 
     <br>
     <form action="/cards/<%= card.id %>/?_method=DELETE" method="post">

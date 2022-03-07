@@ -78,7 +78,7 @@ router.post('/new', async (req, res) => {
 
     try {
         // const [newCard, cardCreated] = await db.card.findOrCreate({
-        const [newCard, cardCreated] = await db.card.findOrCreate({
+        await db.card.create({
             name: searchResults.name,
             image: searchResults.images.small,
             type: searchResults.types[0],
