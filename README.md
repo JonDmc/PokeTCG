@@ -2,7 +2,7 @@
 Pokemon has been popular ever since its release in the 1990s and since that day, it has been continously evolving. So much so, the pokemons that you see on tv and gameboys became a reality through Pokemon Cards, in which up to this day is still very popular for its Collection. This app will allow the user to experience the basic trading and collecting part of the game.
 
 ## Try-it out
-![Pokemon TC-Go](https://pokemon-tc-go.herokuapp.com/)
+https://pokemon-tc-go.herokuapp.com/
 
 ## API / Technologies
 - [Pokemon TCG](https://pokemontcg.io/) - a pokemon api containing in-depth data regarding pokemon cards
@@ -16,7 +16,11 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
 3. Setup your postgres database (this app already has two(2) existing models (excluding joint table))
 4. Create a database named `poketcg` by running `create database poketcg` on your postgres terminal for WSL, or `createdb poketcg` on MAC.
 5. Run `sequelize db:migrate` to run migrations
-6. Run `nodemon` to start your application. If you haven't installed it, run `npm install -g nodemon` to install it globally.
+6. `Touch` a file named .env then put your `PORT`, which can be any port you like, inside of it as well as this code: `SECRET=<whateveryoulike>`. It should look like this.
+
+![sample](sample.JPG)
+
+7. Run `nodemon` to start your application. If you haven't installed it, run `npm install -g nodemon` to install it globally.
 
 ## ERDs
 ![Pokemon TCG](erd.drawio.png)
@@ -44,7 +48,10 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
 | POST | `/decks/:id/remove` | removing the card in the specific deck |
 
 # Wireframes
-### Collecting part 
+<details>
+<summary>Collecting Part</summary>
+<br/>
+
 #### Log-in page
 ![Login page](./wireframes/new-login-new.JPG)
 #### Sign-up page
@@ -58,6 +65,8 @@ Pokemon has been popular ever since its release in the 1990s and since that day,
 ![Cards/new page](./wireframes/new-card-new.JPG)
 #### Decks page
 ![Decks page](./wireframes/new-decks.JPG)
+</details>
+<br/>
 
 # User Stories
 - As a user, I want to collect/trade cards
