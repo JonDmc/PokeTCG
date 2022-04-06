@@ -39,23 +39,32 @@
             <img src="<%= card.images.small %> " alt="">
         </div>
 
-        <% if (hrs>= 2) { %>
+        <form style="display: inline;" action="/cards/new" method="post">
+            <input type="submit" value="Claim" class="btn btn-primary">
+            <input type="hidden" value="<%= card.id %>" name="currentCard">
+            <input type="hidden" value="<%= user.id %>" name="userId">
+            <input type="hidden" value="<%= currentTime %>" name="currentTime">
+        </form>
+        <form style="display: inline;" action="/cards/new" method="get">
+            <input type="submit" value="Skip" class="btn btn-primary">
+        </form>
+        <!-- <% if (hrs>= 2) { %>
 
-            <form style="display: inline;" action="/cards/new" method="post">
-                <input type="submit" value="Claim" class="btn btn-primary">
-                <input type="hidden" value="<%= card.id %>" name="currentCard">
-                <input type="hidden" value="<%= user.id %>" name="userId">
-                <input type="hidden" value="<%= currentTime %>" name="currentTime">
-            </form>
-            <form style="display: inline;" action="/cards/new" method="get">
-                <input type="submit" value="Skip" class="btn btn-primary">
-            </form>
+        <form style="display: inline;" action="/cards/new" method="post">
+            <input type="submit" value="Claim" class="btn btn-primary">
+            <input type="hidden" value="<%= card.id %>" name="currentCard">
+            <input type="hidden" value="<%= user.id %>" name="userId">
+            <input type="hidden" value="<%= currentTime %>" name="currentTime">
+        </form>
+        <form style="display: inline;" action="/cards/new" method="get">
+            <input type="submit" value="Skip" class="btn btn-primary">
+        </form>
 
-            <% } else { %>
+        <% } else { %>
                 <h4 style="padding-top: 2rem; letter-spacing: 0.5rem;">Time Elapsed: <%= timer%>
                 </h4>
 
-                <%}%>
+                <%}%> -->
 
 
     </div>
